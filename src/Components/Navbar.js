@@ -1,74 +1,79 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
-export default function Navbar(props) {
+export default function Navbar({ title = "Set Title Here", mode, setMode, settextColor, showAlert, toggleMode, textColor, btnText }) {
     const handleColorRed = () => {
-        document.body.style.backgroundColor = "#9d3b3b"
-        props.setMode("dark")
-        props.settextColor({color:"white"})
-        props.showAlert("success", "Background Color change to Light Red")
-    }
+        document.body.style.backgroundColor = "#9d3b3b";
+        setMode("dark");
+        settextColor({ color: "white" });
+        showAlert("success", "Background Color changed to Pink");
+    };
+
     const handleColorGreen = () => {
-        document.body.style.backgroundColor = "#355535"
-        props.setMode("dark")
-        props.showAlert("success", "Background Color change to Light Green")
-    }
+        document.body.style.backgroundColor = "#355535";
+        setMode("dark");
+        settextColor({ color: "white" });
+        showAlert("success", "Background Color changed to Light Green");
+    };
+
     const handleColorBlue = () => {
-        document.body.style.backgroundColor = "#3b3b68"
-        props.setMode("dark")
-        props.showAlert("success", "Background Color change to Light Blue")
-    }
+        document.body.style.backgroundColor = "#3b3b68";
+        setMode("dark");
+        settextColor({ color: "white" });
+        showAlert("success", "Background Color changed to Purple");
+    };
+
     const handleColorGrey = () => {
-        document.body.style.backgroundColor = "grey"
-        props.setMode("dark")
-        props.showAlert("success", "Background Color change to Grey")
-    }
-  return (
-    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
-    <div className="container-fluid">
-        <a className="navbar-brand" href="/">{props.title}</a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-            <a className="nav-link" href="/">{props.aboutus}</a>
-            </li>
-        </ul>
-        {/* <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-primary" type="submit">Search</button>
-        </form> */}
-        <div style={{display:"flex", gap:"15px", marginRight:"15px"}}>
-        <span class="border border-dark" onClick={handleColorRed} style={{width:"25px", height:"25px", backgroundColor:"#9d3b3b"}}></span>
-        <span class="border border-dark" onClick={handleColorGreen} style={{width:"25px", height:"25px", backgroundColor:"#355535"}}></span>
-        <span class="border border-dark" onClick={handleColorBlue} style={{width:"25px", height:"25px", backgroundColor:"#3b3b68"}}></span>
-        <span class="border border-dark" onClick={handleColorGrey} style={{width:"25px", height:"25px", backgroundColor:"grey"}}></span>
-        </div>
+        document.body.style.backgroundColor = "grey";
+        setMode("dark");
+        settextColor({ color: "white" });
+        showAlert("success", "Background Color changed to Grey");
+    };
 
+    const handleColorLight = () => {
+        document.body.style.backgroundColor = "white";
+        setMode("light");
+        settextColor({ color: "black" });
+        showAlert("success", "Background Color changed to Light");
+    };
 
-        <div className="form-check form-switch">
-        <input className="form-check-input" type="checkbox" role="switch" onClick={props.toggleMode} id="flexSwitchCheckDefault" />
-        <label className="form-check-label" style={props.textColor} htmlFor="flexSwitchCheckDefault">{props.btnText}</label>
-        </div>
+    const handleColorDark = () => {
+        document.body.style.backgroundColor = "black";
+        setMode("dark");
+        settextColor({ color: "white" });
+        showAlert("success", "Background Color changed to Dark");
+    };
 
-        </div>
-    </div>
-    </nav>
-  )
+    return (
+        <nav className={`navbar-${mode} bg-${mode}`}>
+            <div className="container-fluid d-flex justify-content-between align-items-center p-2">
+                <div>
+                    <Link className="navbar-brand" to="/home">{title}</Link>
+                </div>
+
+                <div style={{ display: "flex", gap: "15px", marginRight: "15px" }}>
+                    <span className="border border-dark" onClick={handleColorRed} style={{ width: "25px", height: "25px", backgroundColor: "#9d3b3b", cursor: "pointer" }}></span>
+                    <span className="border border-dark" onClick={handleColorGreen} style={{ width: "25px", height: "25px", backgroundColor: "#355535", cursor: "pointer" }}></span>
+                    <span className="border border-dark" onClick={handleColorBlue} style={{ width: "25px", height: "25px", backgroundColor: "#3b3b68", cursor: "pointer" }}></span>
+                    <span className="border border-dark" onClick={handleColorGrey} style={{ width: "25px", height: "25px", backgroundColor: "grey", cursor: "pointer" }}></span>
+                    <span className="border border-dark" onClick={handleColorLight} style={{ width: "25px", height: "25px", backgroundColor: "white", cursor: "pointer" }}></span>
+                    <span className="border border-dark" onClick={handleColorDark} style={{ width: "25px", height: "25px", backgroundColor: "black", cursor: "pointer" }}></span>
+                </div>
+            </div>
+
+        </nav>
+    );
 }
 
 Navbar.propTypes = {
-    title : PropTypes.string.isRequired,
-    aboutus : PropTypes.string.isRequired
-
-}
-
-Navbar.defaultProps = {
-    title : "Set Title Here",
-    aboutus : "Set About Here"
-}
+    title: PropTypes.string.isRequired,
+    aboutus: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
+    setMode: PropTypes.func.isRequired,
+    settextColor: PropTypes.func.isRequired,
+    showAlert: PropTypes.func.isRequired,
+    toggleMode: PropTypes.func.isRequired,
+    textColor: PropTypes.object.isRequired,
+    btnText: PropTypes.string.isRequired,
+};

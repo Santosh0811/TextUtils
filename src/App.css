@@ -1,0 +1,21 @@
+.container {
+    width: 50%;
+}
+
+/* Custom button hover effect */
+.btn:hover {
+    background-color: #0056b3 !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+
+  @media screen and (max-width: 1080px) {
+   .form-1 {
+    flex-direction: column;
+   }
+
+   .form-2 {
+    width: 100%;
+   }
+  }
+  
