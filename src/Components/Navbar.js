@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
-export default function Navbar({ title = "Set Title Here", mode, setMode, settextColor, showAlert, toggleMode, textColor, btnText }) {
+export default function Navbar({ title = "Set Title Here", mode, setMode, settextColor, showAlert }) {
     const handleColorRed = () => {
         document.body.style.backgroundColor = "#9d3b3b";
         setMode("dark");
